@@ -1,0 +1,58 @@
+/**
+ * Xebia theme for reveal.js
+ */
+@import "../template/mixins";
+@import "../template/settings";
+@import url('https://fonts.googleapis.com/css?family=Lato|Oswald');
+
+$backgroundColor: #2C374C;
+
+$mainColor: #F1F1F1;
+$headingColor: #FBB03B;
+
+$mainFontSize: 42px;
+$mainFont: 'Oswald', sans-serif;
+$headingFont: 'Lato', sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: uppercase;
+$headingFontWeight: 600;
+$linkColor: #C7B299;
+$linkColorHover: darken($linkColor, 15%);
+$selectionBackgroundColor: darken($linkColor, 25%);
+
+$heading1Size: 2.5em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+section.has-light-background {
+  &, h1, h2, h3, h4, h5, h6 {
+    color: #2b2b2b;
+  }
+}
+
+.slides header {
+  text-align: left;
+  .brand-logo {
+    height: 100px;
+    width: 100px;
+  }
+}
+
+.slides footer {
+  font-size: .4em;
+  $marginFromBottom: 30px;
+  .footer-left {
+    position: absolute;
+    bottom: $marginFromBottom;
+    left: 0;
+  }
+  .footer-right {
+    bottom: $marginFromBottom;
+    position: absolute;
+    right: 0;
+  }
+}
+
+@import "../template/theme";
