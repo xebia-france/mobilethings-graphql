@@ -16,11 +16,11 @@ section.has-light-background, section.has-light-background h1, section.has-light
   .slides footer .footer-left {
     position: absolute;
     bottom: 30px;
-    left: 0; }
+    left: 20px; }
   .slides footer .footer-right {
     bottom: 30px;
     position: absolute;
-    right: 0; }
+    right: 20px; }
 
 /*********************************************
  * GLOBAL STYLES

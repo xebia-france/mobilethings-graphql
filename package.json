@@ -11,13 +11,13 @@
     "build": "grunt"
   },
   "author": {
-    "name": "Hakim El Hattab",
-    "email": "hakim.elhattab@gmail.com",
-    "web": "http://hakim.se"
+    "name": "Benjamin & Simone",
+    "email": "blacroix@xebia.fr",
+    "web": "http://blog.xebia.fr"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/hakimel/reveal.js.git"
+    "url": "git@github.com:blacroix/talk-graphql-mobile.git"
   },
   "engines": {
     "node": ">=4.0.0"

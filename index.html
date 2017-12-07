@@ -14,7 +14,7 @@
 
     <!-- Printing and PDF exports -->
     <script>
-        var link = document.createElement('link');
+        const link = document.createElement('link');
         link.rel = 'stylesheet';
         link.type = 'text/css';
         link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
@@ -107,6 +107,74 @@
                 </ol>
             </section>
         </section>
+        <section>
+            <section>
+                <h3>Any <code>small</code> library out here?</h3>
+            </section>
+            <section>
+                <h3>Kraph</h3>
+                <h4>JSON request body builder written in Kotlin</h4>
+            </section>
+            <section>
+                <h4>Create a query with Kraph DSL</h4>
+                <pre><code data-trim data-noescape>
+                    Kraph {
+                      query {
+                        fieldObject("Fake") {
+                          field("id")
+                          field("firstName")
+                          field("lastName")
+                        }
+                      }
+                    }.toRequestString()
+                </code></pre>
+            </section>
+            <section>
+                <h4>Query generated</h4>
+                <pre><code data-trim data-noescape>
+                    {"query": "query { Fake { id firstName lastName } }",
+                        "variables": null, "operationName": null}
+                </code></pre>
+            </section>
+            <section>
+                <h4><code>toGraphQueryString()</code> to generate pretty query</h4>
+                <pre><code data-trim data-noescape>
+                    query {
+                      Fake {
+                        id
+                        firstName
+                        lastName
+                      }
+                    }
+                </code></pre>
+            </section>
+            <section>
+                <h4>Features</h4>
+                <ol>
+                    <li>Query and Mutation</li>
+                    <li>Fragment (re-usable Kraph query)</li>
+                    <li>Support for Relay Mutation (<a href="https://facebook.github.io/relay/graphql/mutations.htm">Relay
+                        Input Object Mutation</a>)
+                    </li>
+                    <li>Support for Relay Cursor Connection (<a
+                            href="https://facebook.github.io/relay/graphql/connections.htm">Relay Cursor Connection</a>)
+                    </li>
+                </ol>
+            </section>
+            <section>
+                <h3>Take away</h3>
+                <ol>
+                    <li>Fast and maintainable way to define query</li>
+                    <li>More expressive but less concise</li>
+                    <li>Quite easy to maintain</li>
+                </ol>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>Any lib to generate typed code from query string?</h3>
+            </section>
+        </section>
         <footer>
             <span class="footer-left">Simone <a href="https://twitter.com/viteinfinite">@viteinfinite</a></span>
             <span class="footer-right">Benjamin <a href="https://twitter.com/benjlacroix">@benjlacroix</a></span>
@@ -127,8 +195,8 @@
             {src: 'plugin/notes/notes.js', async: true},
             {
                 src: 'plugin/highlight/highlight.js', async: true, callback: function () {
-                hljs.initHighlightingOnLoad();
-            },
+                    hljs.initHighlightingOnLoad();
+                },
             }]
     });
 </script>
