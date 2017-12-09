@@ -218,7 +218,7 @@
                     <li>Install the Apollo framework into your project and link it to your application target</li>
                     <li>Install <code>apollo-codegen</code> globally through <code>npm</code></li>
                     <li>Add a schema file to your target directory</li>
-                    <li>Add a code generation build step to your target</li>
+                    <li>Add a code generation build phase to your target</li>
                     <li>Build your target</li>
                     <li>Add the generated API file to your target</li>
                     <li>Create <code>.graphql</code> files with your queries or mutations and add them to your target</li>
@@ -242,7 +242,7 @@
                     apollo-codegen download-schema http://HOST:PORT/graphql --output schema.json
                 </code></pre>
 
-                <h4>4. Add Build Step</h4>
+                <h4>4. Add Build Phase</h4>
                 <pre><code data-trim data-noescape>
                     APOLLO_FRAMEWORK_PATH="$(eval find $FRAMEWORK_SEARCH_PATHS -name "Apollo.framework" -maxdepth 1)"
 
