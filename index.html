@@ -261,6 +261,29 @@
                 <h4>7. Add <code>.graphql</code> files and rebuild</h4>
             </section>   
         </section>
+        <section>
+            <section>  
+                <h3>Running a query on <span style="text-transform: lowercase;">i</span>OS</h3>
+            </section>
+            <section>
+                <h4>4. Create a new ApolloClient instance</h4>
+                <pre><code data-trim data-noescape>
+                    let client = ApolloClient(url: "MY_URL")
+                </code></pre>
+            </section>
+            <section>
+                <h4>5. Pass a Query object to the fetch method on the client</h4>
+                <pre><code data-trim data-noescape>
+                    client.fetch(query: RevengeQuery()) { result, error in
+                        guard let result = result else {
+                            // Do something with the error, perhaps?
+                            return
+                        }
+                        // result contains your query output
+                    }
+                </code></pre>
+            </section>
+        </section>
         <footer>
             <span class="footer-left">Simone <a href="https://twitter.com/viteinfinite">@viteinfinite</a></span>
             <span class="footer-right">Benjamin <a href="https://twitter.com/benjlacroix">@benjlacroix</a></span>
