@@ -211,9 +211,16 @@
             </section>
             <section>
                 <h3>Chester Code Example</h3>
-                <p>
-                    TODO
-                </p>
+                <pre><code data-trim data-noescape>
+                    import Chester
+
+                    let query = QueryBuilder()
+                        .from("posts")
+                        .with(arguments: Argument(key: "id", value: "20"), Argument(key: "author", value: "Chester"))
+                        .with(fields: "id", "title", "content")
+
+                    let queryString = try? query.build
+                </code></pre>
             </section>
         </section>
         <section>
