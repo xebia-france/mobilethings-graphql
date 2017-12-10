@@ -33,10 +33,38 @@
         <section>
             <h2>Agenda</h2>
             <ul>
+                <li>Client</li>
                 <li>Vanilla</li>
                 <li>Minimal library</li>
                 <li>Generate code from query</li>
             </ul>
+        </section>
+        <section>
+            <section>
+                <h3>Can I use <code>Swagger</code>?</h3>
+            </section>
+            <section data-background-image="https://media.giphy.com/media/3o7btT1T9qpQZWhNlK/giphy.gif"></section>
+            <section>
+                <h3>GraphiQL</h3>
+                <blockquote>
+                    A graphical interface in-browser GraphQL&nbsp;IDE
+                </blockquote>
+            </section>
+            <section data-background-image="https://i.imgur.com/sc6lHI4.png"></section>
+            <section>
+                <h4>How?</h4>
+                <pre><code data-trim data-noescape>
+                    use express-graphql
+                </code></pre>
+                or
+                <pre><code data-trim data-noescape>
+                    npm i -g graphiql
+                </code></pre>
+                or
+                <pre><code data-trim data-noescape>
+                    brew cask install graphiql
+                </code></pre>
+            </section>
         </section>
         <section>
             <section>
@@ -94,9 +122,6 @@
                             .getJSONObject("data")
                             .getString("Fake"))
                 </code></pre>
-            </section>
-            <section>
-                <h3>iOS</h3>
             </section>
             <section>
                 <h3>Take away</h3>
@@ -179,7 +204,9 @@
                     <li>https://github.com/WeltN24/GraphQLicious</li>
                     <li>https://github.com/JanGorman/Chester</li>
                     <li>https://github.com/LeToteTeam/Stardaze</li>
-                    <li>https://github.com/Anobisoft/ASGraphQLClient <small>(Objective-C)</small></li>
+                    <li>https://github.com/Anobisoft/ASGraphQLClient
+                        <small>(Objective-C)</small>
+                    </li>
                 </ul>
             </section>
             <section>
@@ -204,11 +231,93 @@
                 <h4>Write queries, not code.</h4>
             </section>
             <section>
-                <h4>Android: How to?</h4>
+                <h4>Android: setup</h4>
+                <p>Add dependencies</p>
+                <pre><code data-trim data-noescape>
+                    apply plugin: 'com.apollographql.android'
+
+                    buildscript {
+                        ext.apollo_version = '0.4.3'
+                        dependencies {
+                            classpath "com.apollographql.apollo:apollo-gradle-plugin:$apollo_version"
+                        }
+                    }
+
+                    dependencies {
+                        implementation "com.apollographql.apollo:apollo-runtime:$apollo_version"
+                        implementation "com.apollographql.apollo:apollo-android-support:$apollo_version"
+                    }
+                </code></pre>
+            </section>
+            <section>
+                <h4>Android: how to?</h4>
+                <p>Query</p>
                 <ol>
-                    <li>Store queries in <code>*.graphql</code> files (1 by query; can contain fragment)</li>
+                    <li>Store queries in <code>src/main/graphql/**/*.graphql</code></li>
                     <li>Use <code>apollo-codegen</code> to download schema</li>
                 </ol>
+            </section>
+            <section>
+                <h4>Android: how to?</h4>
+                <p>Query</p>
+                <pre><code data-trim data-noescape>
+                    query GetUser {
+                        Fake {
+                            id
+                            firstName
+                            lastName
+                        }
+                    }
+                </code></pre>
+            </section>
+            <section>
+                <h4>Android: how to?</h4>
+                <p>Build</p>
+                <pre><code data-trim data-noescape>
+                    companion object {
+                        const val URL = "http://fake.graphql.guru/graphql/"
+                        val CLIENT = OkHttpClient()
+                        private val APOLLO = ApolloClient.builder().serverUrl(URL).okHttpClient(CLIENT).build()
+                    }
+                </code></pre>
+            </section>
+            <section>
+                <h4>Android: how to?</h4>
+                <p>Build</p>
+                <pre><code data-trim data-noescape>
+                APOLLO.query(GetUserQuery.builder().build())
+                    .enqueue(object : Callback<GetUserQuery.Data>() {
+                        override fun onFailure(ignored: ApolloException) {}
+
+                        override fun onResponse(response: Response<GetUserQuery.Data>) {
+                            idApolloView.text =
+                                response.data()?.Fake()?.id()
+                            firstNameApolloView.text =
+                                response.data()?.Fake()?.firstName()
+                            lastNameApolloView.text =
+                                response.data()?.Fake()?.lastName()
+                        }
+                    })
+                </code></pre>
+            </section>
+            <section data-background-image="https://media.giphy.com/media/l3vQY4uui06iabkli/giphy.gif">
+            </section>
+            <section>
+                <h3>Take away</h3>
+                <ul>
+                    <li>All queries in one place (folder)</li>
+                    <li>Auto-generated query at compile time</li>
+                    <li>Written in Java generating Java code</li>
+                    <li>Type safe</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Bonus</h3>
+                <ul>
+                    <li>Custom scalar types</li>
+                    <li>Cached response support</li>
+                    <li>RxJava support</li>
+                </ul>
             </section>
         </section>
         <section>
@@ -221,7 +330,8 @@
                     <li>Add a code generation build phase to your target</li>
                     <li>Build your target</li>
                     <li>Add the generated API file to your target</li>
-                    <li>Create <code>.graphql</code> files with your queries or mutations and add them to your target</li>
+                    <li>Create <code>.graphql</code> files with your queries or mutations and add them to your target
+                    </li>
                 </ol>
             </section>
             <section>
@@ -259,10 +369,10 @@
                 <h4>5. Build</h4>
                 <h4>6. Add the generated file (<code>API.swift</code>)</h4>
                 <h4>7. Add <code>.graphql</code> files and rebuild</h4>
-            </section>   
+            </section>
         </section>
         <section>
-            <section>  
+            <section>
                 <h3>Running a query on <span style="text-transform: lowercase;">i</span>OS</h3>
             </section>
             <section>
@@ -283,6 +393,15 @@
                     }
                 </code></pre>
             </section>
+        </section>
+        <section>
+            <h3>Thank you!</h3>
+            <blockquote>
+                http://github.com/blacroix/talk-graphql-mobile
+            </blockquote>
+            <blockquote>
+                http://blacroix.github.io/talk-graphql-mobile
+            </blockquote>
         </section>
         <footer>
             <span class="footer-left">Simone <a href="https://twitter.com/viteinfinite">@viteinfinite</a></span>
