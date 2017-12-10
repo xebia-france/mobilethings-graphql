@@ -376,22 +376,186 @@
                 <h3>Running a query on <span style="text-transform: lowercase;">i</span>OS</h3>
             </section>
             <section>
-                <h4>4. Create a new ApolloClient instance</h4>
-                <pre><code data-trim data-noescape>
-                    let client = ApolloClient(url: "MY_URL")
-                </code></pre>
+                <ol>
+                    <li>Create a new .graphql file in your project, for instance Revenge.graphql</li>
+                    <pre><code data-trim data-noescape>
+                        query Revenge {
+                            film(filmID: "6") {
+                                releaseDate
+                            }
+                        }
+                    </code></pre>
+
+                    <li>Run the compiler</li>
+                    <li>Swift code for the query will be generated and added to <code>API.swift</code></li>
+                </ol>
             </section>
             <section>
-                <h4>5. Pass a Query object to the fetch method on the client</h4>
-                <pre><code data-trim data-noescape>
-                    client.fetch(query: RevengeQuery()) { result, error in
-                        guard let result = result else {
-                            // Do something with the error, perhaps?
-                            return
+                <ol start="4">
+                    <li>Create a new <code>ApolloClient</code> instance</li>
+                    <pre><code data-trim data-noescape>
+                        let client = ApolloClient(url: "MY_URL")
+                    </code></pre>
+                </ol>
+            </section>
+            <section>
+                <ol start="5">
+                    <li>Pass a Query object to the client's <code>fetch</code> method</li>
+                    <pre><code data-trim data-noescape>
+                        client.fetch(query: RevengeQuery()) { result, error in
+                            guard let result = result else {
+                                // Do something with 'error'
+                                return
+                            }
+                            // 'result' contains your query output
                         }
-                        // result contains your query output
-                    }
-                </code></pre>
+                    </code></pre>
+                </ol>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>Main advantages</h3>
+                <ul>
+                    <li>Code generation (works offline)</li>
+                    <li>GraphiQL:</li>
+                    <ul>
+                        <li>Try your query</li>
+                        <li>Documentation</li>
+                    </ul>
+                    <li>Fragments</li>
+                    <li>Plays well with Swift's strong typing (sort of)</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Main issues</h3>
+                <ul>
+                    <li>Uploading</li>
+                    <li>Optional-by-default</li>
+                    <li>Type conformance</li>
+                </ul>
+            </section>
+            <section>
+                <h4>Type Conformance</h4>
+            </section>
+                <section>
+                    <p>Let's say we need to write the following:</p>
+                    <pre><code data-trim data-noescape>
+                        func displayHeroName(hero: Hero) {
+                            myLabel.text = hero.name
+                        }
+                    </code></pre>
+
+                    <p>We'd like the <code>Hero</code> type to be provided by a number of <em>different</em> sources.</p>
+                </section>
+                <section>
+                    <p>For instance:</p>
+                    <pre><code data-trim data-noescape>
+                        query Vader {
+                            person(id: "cGVvcGxlOjQ=") {
+                                name
+                            }
+                        }
+                    </code></pre>
+
+                    <hr>
+
+                    <pre><code data-trim data-noescape>
+                        query Revenge {
+                            film(filmID: "6") {
+                                characterConnection(first: 5) {
+                                    characters {
+                                        name
+                                    }
+                                }
+                            }
+                        }
+                    </code></pre>
+
+                    <hr>
+
+                    <p>Are the results compatible with each other?</p>
+                </section>
+
+                <section>
+                    <h4>Nope.</h4>                    
+                </section>
+
+                <section>
+                    <pre><code data-trim data-noescape>
+                        query Vader {
+                            person(id: "cGVvcGxlOjQ=") {
+                                name
+                            }
+                        }
+                    </code></pre>
+                    <pre><code>-> VaderQuery.Data.Person</code></pre>
+
+                    <hr>
+                    
+                    <pre><code data-trim data-noescape>
+                        query Revenge {
+                            film(filmID: "6") {
+                                characterConnection(first: 5) {
+                                    characters {
+                                        name
+                                    }
+                                }
+                            }
+                        }
+                    </code></pre>
+                    <pre><code>-> RevengeQuery.Data.Film.CharacterConnection.Character</code></pre>
+                </section>
+
+                <section>
+                    <h4>Two solutions:</h4>
+                    <ol>
+                        <li>Swift protocols</li>
+                        <pre><code data-trim data-noescape>
+                            protocol Hero {
+                                var name: String { get }
+                            }
+
+                            extension VaderQuery.Data.Person: Hero { }
+                            extension eQuery.Data.Film.CharacterConnection.Character: Hero { }
+                        </code></pre>
+                    </ol>
+                </section>
+                <section>
+                    <ol start="2">
+                        <li>Fragments</li>
+                        <pre><code data-trim data-noescape>
+                            query Vader {
+                                person(id: "cGVvcGxlOjQ=") {
+                                    ...PersonDetail
+                                }
+                            }
+                        </code></pre>
+
+                        <pre><code data-trim data-noescape>
+                            query Revenge {
+                                film(filmID: "6") {
+                                    releaseDate
+                                    characterConnection(first: 5) {
+                                        characters {
+                                            ...PersonDetail
+                                        }
+                                    }
+                                }
+                            }
+                        </code></pre>
+                    </ol>
+                </section>
+
+                <section>
+                    <h4>Optional-by-default</h4>
+                    <ul>
+                        <li>GraphQL object fields are optional by default</li>
+                        <li>Non-optionality can be enforced using "<code>!</code>"</li>
+                        <li>Having non-optional values missing from a query will result in an error</li>
+                        <li>Use optionality only when strictly needed</li>
+                    </ul>
+                </section>
             </section>
         </section>
         <section>
