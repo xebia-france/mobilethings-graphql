@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,30 +8,95 @@
     tools:context="fr.xebia.graphql.MainActivity">
 
     <TextView
-        android:id="@+id/idView"
+        android:id="@+id/idVanillaView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="an id"/>
+        tools:text="an id" />
 
     <TextView
-        android:id="@+id/firstNameView"
+        android:id="@+id/firstNameVanillaView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idView"
-        tools:text="a first name"/>
+        app:layout_constraintTop_toBottomOf="@+id/idVanillaView"
+        tools:text="a first name" />
 
     <TextView
-        android:id="@+id/lastNameView"
+        android:id="@+id/lastNameVanillaView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstNameView"
-        tools:text="a last name"/>
+        app:layout_constraintTop_toBottomOf="@+id/firstNameVanillaView"
+        tools:text="a last name" />
+
+    <TextView
+        android:id="@+id/idKraphView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lastNameVanillaView"
+        tools:text="an id" />
+
+    <TextView
+        android:id="@+id/firstNameKraphView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idKraphView"
+        tools:text="a first name" />
+
+    <TextView
+        android:id="@+id/lastNameKraphView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstNameKraphView"
+        tools:text="a last name" />
+
+    <TextView
+        android:id="@+id/idApolloView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lastNameKraphView"
+        tools:text="an id" />
+
+    <TextView
+        android:id="@+id/firstNameApolloView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idApolloView"
+        tools:text="a first name" />
+
+    <TextView
+        android:id="@+id/lastNameApolloView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstNameApolloView"
+        tools:text="a last name" />
 
 </android.support.constraint.ConstraintLayout>

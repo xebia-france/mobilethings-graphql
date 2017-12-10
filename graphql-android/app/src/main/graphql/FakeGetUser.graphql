@@ -1,0 +1,7 @@
+query GetUser {
+    Fake {
+        id
+        firstName
+        lastName
+    }
+}
