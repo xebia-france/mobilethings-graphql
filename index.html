@@ -33,11 +33,67 @@
         <section>
             <h2>Agenda</h2>
             <ul>
+                <li>One more feature</li>
                 <li>Client</li>
                 <li>Vanilla</li>
                 <li>Minimal library</li>
                 <li>Generate code from query</li>
             </ul>
+        </section>
+        <section>
+            <section>
+                <h3>One more feature</h3>
+                <h4>Fragments</h4>
+            </section>
+            <section>
+                <p>Fragments define pieces that can be used in <em>multiple</em> places</p>
+            </section>
+            <section>
+                <p>How to avoid repetitions?</p>
+                <pre><code data-trim data-noescape>
+                    query PersonAndFriends {
+                        person(personID: "6") {
+                            name
+                            height
+                            mass
+                            birthYear
+                            eyeColor
+
+                            friends {
+                                name
+                                height
+                                mass
+                                birthYear
+                                eyeColor
+                            }
+                        }
+                    }
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code data-trim data-noescape>
+                    fragment PersonDetails on Person {
+                        name
+                        height
+                        mass
+                        birthYear
+                        eyeColor
+                    }
+                </code></pre>
+
+                <pre><code data-trim data-noescape>
+                    query PersonAndFriends {
+                        person(personID: "6") {
+                            ...PersonDetails
+                            
+                            friends {
+                                ...PersonDetails
+                            }
+                        }
+                    }
+                </code></pre>
+            </section>
         </section>
         <section>
             <section>
