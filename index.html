@@ -331,35 +331,40 @@
             <section>
                 <h3><span style="text-transform: lowercase">i</span>OS: How to?</h3>
                 <ol>
-                    <li>Install the Apollo framework into your project and link it to your application target</li>
-                    <li>Install <code>apollo-codegen</code> globally through <code>npm</code></li>
-                    <li>Add a schema file to your target directory</li>
-                    <li>Add a code generation build phase to your target</li>
-                    <li>Build your target</li>
-                    <li>Add the generated API file to your target</li>
-                    <li>Create <code>.graphql</code> files with your queries or mutations and add them to your target
-                    </li>
+                    <li class="fragment">Install the Apollo framework into your project and link it to your application target</li>
+                    <li class="fragment">Install <code>apollo-codegen</code> globally through <code>npm</code></li>
+                    <li class="fragment">Add a schema file to your target directory</li>
+                    <li class="fragment">Add a code generation build phase to your target</li>
+                    <li class="fragment">Build your target</li>
+                    <li class="fragment">Add the generated API file to your target</li>
+                    <li class="fragment">Create <code>.graphql</code> files with your queries or mutations and add them to your target</li>
                 </ol>
             </section>
             <section>
-                <h4>1. Install Apollo Library</h4>
+                <ol>
+                    <li>Install Apollo Library</li>
+                </ol>
                 <pre><code data-trim data-noescape>
                     pod 'Apollo', '~> 0.7.0'
                     github "apollographql/apollo-ios" "0.7.0"
                 </code></pre>
-
-                <h4>2. Install Apollo Codegen</h4>
+                <ol start="2">
+                    <li>Install Apollo Codegen</li>
+                </ol>
                 <pre><code data-trim data-noescape>
                     npm install -g apollo-codegen
                 </code></pre>
             </section>
             <section>
-                <h4>3. Download the schema</h4>
+                <ol start="3">
+                    <li>Download the schema</li>
+                </ol>
                 <pre><code data-trim data-noescape>
                     apollo-codegen download-schema http://HOST:PORT/graphql --output schema.json
                 </code></pre>
-
-                <h4>4. Add Build Phase</h4>
+                <ol start="4">
+                    <li>Add Build Phase</li>
+                </ol>
                 <pre><code data-trim data-noescape>
                     APOLLO_FRAMEWORK_PATH="$(eval find $FRAMEWORK_SEARCH_PATHS -name "Apollo.framework" -maxdepth 1)"
 
@@ -373,9 +378,11 @@
                 </code></pre>
             </section>
             <section>
-                <h4>5. Build</h4>
-                <h4>6. Add the generated file (<code>API.swift</code>)</h4>
-                <h4>7. Add <code>.graphql</code> files and rebuild</h4>
+                <ol start="5">
+                    <li>Build</li>
+                    <li>Add the generated file (<code>API.swift</code>)</li>
+                    <li>Add <code>.graphql</code> files and rebuild</li>
+                </ol>
             </section>
         </section>
         <section>
